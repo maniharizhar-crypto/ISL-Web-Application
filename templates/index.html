@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Indian Sign Language Interpreter Web Application</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header class="navbar" aria-label="Navigation">
+      <div class="nav-left"><div class="logo" aria-hidden="true">🤟</div></div>
+      <h1 class="nav-title">Indian Sign Language Interpreter Web Application</h1>
+      <button class="menu-btn" aria-label="Options menu">☰</button>
+    </header>
+
+    <main class="layout">
+      <section class="main-card" aria-label="Webcam and Prediction">
+        <section class="hero" aria-label="Hero section">
+          <div class="hero-graphic" aria-hidden="true">
+            <span>🤚</span><span>🤟</span><span>🖐️</span>
+          </div>
+          <h2>Speak with Your Hands – Instantly Translate Indian Sign Language!</h2>
+          <p class="hero-subtitle">
+            Recognizes A-Z, 0-9, and core ISL words in real-time with confidence scoring.
+          </p>
+        </section>
+
+        <p class="section-label">Webcam</p>
+        <div class="video-frame" id="videoFrame">
+          <video id="video" autoplay muted playsinline></video>
+          <div id="overlay">Camera stopped</div>
+        </div>
+
+        <p class="section-label">Prediction</p>
+        <p class="detected-text">
+          Detected Gesture:
+          <span id="predictionText" class="prediction-highlight">—</span>
+        </p>
+        <p id="confidenceText" class="confidence">Confidence: —</p>
+        <div class="confidence-track" aria-hidden="true">
+          <div id="confidenceBar" class="confidence-bar"></div>
+        </div>
+
+        <div class="controls">
+          <button id="startBtn" class="action-btn">Start Webcam</button>
+          <button id="stopBtn" class="action-btn" disabled>Stop Webcam</button>
+          <button id="speakBtn" class="secondary-btn">Speak Current Sign</button>
+        </div>
+
+        <section class="upload-card" aria-label="Upload Section">
+          <p class="section-label">Upload Section</p>
+          <p class="upload-hint" title="Upload a saved video to detect gestures">
+            Upload a saved video to detect gestures
+          </p>
+          <form id="uploadForm" class="upload-form">
+            <label for="videoUpload" class="file-input-card">Choose video file</label>
+            <input type="file" id="videoUpload" accept="video/*" required />
+            <button type="submit" class="action-btn">Submit Video</button>
+          </form>
+        </section>
+      </section>
+
+      <aside class="history-card" aria-label="History">
+        <div class="history-head">
+          <p class="section-label">History</p>
+          <button id="drawerToggle" class="drawer-toggle">Show/Hide</button>
+        </div>
+        <ul id="predictionLog" class="history-list"></ul>
+      </aside>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <canvas id="captureCanvas" width="640" height="480" hidden></canvas>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
